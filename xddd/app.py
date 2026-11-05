@@ -2,10 +2,10 @@ from pdf_presupuesto import armar_pdf, limpiar
 import streamlit as st
 
 st.set_page_config(
-    page_title="Calculadora de Presupuestos", page_icon="🧮", layout="centered"
+    page_title="Calculadora de Presupuestos", layout="centered"
 )
 
-st.title("🧮 Calculadora de Presupuestos")
+st.title(" Calculadora de Presupuestos")
 st.write(
     "Seleccioná los productos, cantidad y forma de pago para generar tu"
     " presupuesto en PDF."
@@ -13,7 +13,6 @@ st.write(
 
 st.divider()
 
-# --- CATÁLOGO DE PRODUCTOS (Cambiá nombres y precios según tu negocio) ---
 PRODUCTOS = {
     "Gaseosa 1.5L": 2800.0,
     "Alfajor Triple": 1500.0,
@@ -30,7 +29,6 @@ st.caption(
 
 productos_seleccionados = []
 
-# Bucle para permitir la selección de hasta 4 productos
 for i in range(1, 5):
   col1, col2 = st.columns([3, 1])
   with col1:
@@ -61,7 +59,6 @@ for i in range(1, 5):
 
 st.divider()
 
-# --- FORMA DE PAGO ---
 st.subheader("2. Forma de Pago")
 forma_pago = st.radio(
     "Seleccioná cómo abonás:",
@@ -74,14 +71,12 @@ forma_pago = st.radio(
 
 es_efectivo = "Efectivo" in forma_pago
 
-# --- CÁLCULOS MATEMÁTICOS (Parte 3 del cuadernillo) ---
 subtotal = sum(p["subtotal"] for p in productos_seleccionados)
 descuento = (subtotal * 0.10) if es_efectivo else 0.0
 base = subtotal - descuento
 iva = base * 0.21
 total = base + iva
 
-# --- RESUMEN EN PANTALLA ---
 st.divider()
 st.subheader("3. Resumen del Presupuesto")
 
@@ -106,16 +101,14 @@ else:
 
 st.divider()
 
-# --- CAMPO CLIENTE Y BOTÓN DESCARGA (Parte 7 - V3) ---
 st.subheader("4. Emisión de Comprobante")
 
 cliente_input = st.text_input("Nombre del Cliente:", placeholder="Ej: Julián")
-cliente = limpiar(cliente_input)  # Antes de usarlo en el PDF
+cliente = limpiar(cliente_input)
 
 if not productos_seleccionados:
   st.warning("Seleccioná al menos un producto para generar el documento.")
 elif cliente == "":
-  # Bloque V3: Si el cliente está vacío (o solo puso emojis), no muestra el botón
   st.warning("Escribí el nombre del cliente para armar el presupuesto")
 else:
   pdf_bytes = armar_pdf(
@@ -130,7 +123,7 @@ else:
   )
 
   st.download_button(
-      label="📥 Descargar PDF del Presupuesto",
+      label=" Descargar PDF del Presupuesto",
       data=pdf_bytes,
       file_name=f"presupuesto_{cliente.replace(' ', '_')}.pdf",
       mime="application/pdf",
