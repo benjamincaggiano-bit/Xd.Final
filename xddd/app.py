@@ -22,7 +22,7 @@ PRODUCTOS = {
     "Chocolatada": 800.0,
 }
 
-st.subheader("1. Selección de Productos")
+st.subheader("Selección de Productos")
 st.caption(
     "Podés elegir hasta 4 productos distintos para armar la lista de compra:"
 )
@@ -59,7 +59,7 @@ for i in range(1, 5):
 
 st.divider()
 
-st.subheader("2. Forma de Pago")
+st.subheader("Forma de Pago")
 forma_pago = st.radio(
     "Seleccioná cómo abonás:",
     options=[
@@ -71,7 +71,6 @@ forma_pago = st.radio(
 
 es_efectivo = "Efectivo" in forma_pago
 
-# --- CÁLCULOS MATEMÁTICOS (Parte 3 del cuadernillo) ---
 subtotal = sum(p["subtotal"] for p in productos_seleccionados)
 descuento = (subtotal * 0.10) if es_efectivo else 0.0
 base = subtotal - descuento
@@ -79,7 +78,7 @@ iva = base * 0.21
 total = base + iva
 
 st.divider()
-st.subheader("3. Resumen del Presupuesto")
+st.subheader("Resumen del Presupuesto")
 
 if productos_seleccionados:
   st.table([{
@@ -102,7 +101,7 @@ else:
 
 st.divider()
 
-st.subheader("4. Emisión de Comprobante")
+st.subheader("Emisión de Comprobante")
 
 cliente_input = st.text_input("Nombre del Cliente:", placeholder="Ej: Julián")
 cliente = limpiar(cliente_input)
