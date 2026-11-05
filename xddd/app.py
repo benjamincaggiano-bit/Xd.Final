@@ -2,7 +2,7 @@ from pdf_presupuesto import armar_pdf, limpiar
 import streamlit as st
 
 st.set_page_config(
-    page_title="Calculadora de Presupuestos", layout="centered"
+    page_title="Kiosquito", layout="centered"
 )
 
 st.title(" Calculadora de Presupuestos")
@@ -16,13 +16,13 @@ st.divider()
 PRODUCTOS = {
     "Gaseosa 1.5L": 2800.0,
     "Alfajor Triple": 1500.0,
-    "Galletitas Paquete": 1200.0,
-    "Agua Mineral 500ml": 1000.0,
+    "Galletitas": 1200.0,
+    "Agua 500ml": 1000.0,
     "Sandwich de Miga": 2200.0,
-    "Chocolatina": 800.0,
+    "Chocolatada": 800.0,
 }
 
-st.subheader("1. Selección de Productos")
+st.subheader("Selección de Productos")
 st.caption(
     "Podés elegir hasta 4 productos distintos para armar la lista de compra:"
 )
@@ -47,7 +47,7 @@ for i in range(1, 5):
         key=f"cant_{i}",
     )
 
-  if prod != "-- Ninguno --":
+  if prod != "Ninguno":
     precio_u = PRODUCTOS[prod]
     subtotal_item = precio_u * cant
     productos_seleccionados.append({
@@ -59,7 +59,7 @@ for i in range(1, 5):
 
 st.divider()
 
-st.subheader("2. Forma de Pago")
+st.subheader("Forma de Pago")
 forma_pago = st.radio(
     "Seleccioná cómo abonás:",
     options=[
@@ -78,7 +78,7 @@ iva = base * 0.21
 total = base + iva
 
 st.divider()
-st.subheader("3. Resumen del Presupuesto")
+st.subheader("Resumen del Presupuesto")
 
 if productos_seleccionados:
   st.table([{
@@ -101,7 +101,7 @@ else:
 
 st.divider()
 
-st.subheader("4. Emisión de Comprobante")
+st.subheader("Emisión de Comprobante")
 
 cliente_input = st.text_input("Nombre del Cliente:", placeholder="Ej: Julián")
 cliente = limpiar(cliente_input)
