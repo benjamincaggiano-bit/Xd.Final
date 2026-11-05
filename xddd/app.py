@@ -103,7 +103,7 @@ st.divider()
 
 st.subheader("Emisión de Comprobante")
 
-cliente_input = st.text_input("Nombre del Cliente:", placeholder="Ej: Julián")
+cliente_input = st.text_input("Nombre del Cliente:", placeholder="Ej: Alma")
 cliente = limpiar(cliente_input)
 
 if not productos_seleccionados:
