@@ -14,7 +14,6 @@ def armar_pdf(
   pdf = FPDF(format="A4", unit="mm")
   pdf.add_page()
 
-  # Encabezado
   pdf.set_font("Helvetica", "B", 16)
   pdf.cell(0, 10, "PRESUPUESTO DE COMPRA", ln=True, align="C")
 
@@ -23,7 +22,6 @@ def armar_pdf(
   pdf.cell(0, 8, f"Forma de Pago: {forma_pago}", ln=True)
   pdf.ln(5)
 
-  # Tabla de productos
   pdf.set_font("Helvetica", "B", 10)
   pdf.cell(80, 8, "Producto", border=1)
   pdf.cell(25, 8, "Cant.", border=1, align="C")
@@ -42,7 +40,6 @@ def armar_pdf(
 
   pdf.ln(5)
 
-  # Resumen de cuentas (Parte 3)
   pdf.set_font("Helvetica", "", 10)
   pdf.cell(145, 6, "Subtotal:", align="R")
   pdf.cell(45, 6, f"${subtotal:.2f}", align="R", ln=True)
@@ -60,5 +57,4 @@ def armar_pdf(
   pdf.cell(145, 8, "TOTAL:", align="R")
   pdf.cell(45, 8, f"${total:.2f}", align="R", ln=True)
 
-  # Devolver bytes para Streamlit
   return bytes(pdf.output())
