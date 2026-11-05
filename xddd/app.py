@@ -5,7 +5,7 @@ st.set_page_config(
     page_title="Calculadora de Presupuestos", layout="centered"
 )
 
-st.title("Calculadora de Presupuestos")
+st.title("Kiosquito")
 st.write(
     "Seleccioná los productos, cantidad y forma de pago para generar tu"
     " presupuesto en PDF."
@@ -16,10 +16,10 @@ st.divider()
 PRODUCTOS = {
     "Gaseosa 1.5L": 2800.0,
     "Alfajor Triple": 1500.0,
-    "Galletitas Paquete": 1200.0,
-    "Agua Mineral 500ml": 1000.0,
+    "Galletitas": 1200.0,
+    "Agua 500ml": 1000.0,
     "Sandwich de Miga": 2200.0,
-    "Chocolatina": 800.0,
+    "Chocolatada": 800.0,
 }
 
 st.subheader("1. Selección de Productos")
